@@ -23,6 +23,7 @@
     --gray: #999999;
     --gray-light: #e0e0e0;
     --text: #1a1a1a;
+    --content-max: 1100px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,11 +47,16 @@
   }
 
   .header-top {
+    padding: 14px 40px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .header-top-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 40px;
-    border-bottom: 1px solid #eee;
   }
 
   .logo {
@@ -72,23 +78,29 @@
 
   /* ── NAV TABS ── */
   nav {
-    display: flex;
     background: #ffffff;
+  }
+
+  .nav-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
     overflow-x: auto;
     scrollbar-width: none;
+    padding: 0 40px;
   }
-  nav::-webkit-scrollbar { display: none; }
+  .nav-inner::-webkit-scrollbar { display: none; }
 
   .tab-btn {
     flex: 1;
-    min-width: 140px;
-    padding: 14px 20px;
+    min-width: 120px;
+    padding: 14px 16px;
     background: none;
     border: none;
     border-bottom: 3px solid transparent;
     color: #888;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size:17px;
+    font-size:15px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -112,13 +124,13 @@
 
   .tab-btn .tab-icon {
     display: block;
-    font-size:23px;
+    font-size:21px;
     margin-bottom: 4px;
   }
 
   /* ── CONTENT AREA ── */
   .content-area {
-    max-width: 1100px;
+    max-width: var(--content-max);
     margin: 0 auto;
     padding: 40px 40px 80px;
   }
@@ -404,11 +416,28 @@
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 1140px) {
+    .nav-inner {
+      padding: 0 20px;
+    }
+    .header-top {
+      padding: 12px 20px;
+    }
+    .content-area {
+      padding: 24px 20px 60px;
+    }
+  }
+
   @media (max-width: 768px) {
-    .header-top { padding: 12px 20px; }
-    .content-area { padding: 24px 20px 60px; }
+    .nav-inner {
+      padding: 0 4px;
+    }
+    .header-top {
+      padding: 12px 16px;
+    }
+    .content-area { padding: 20px 16px 60px; }
     .section-title { font-size:28px; }
-    .tab-btn { min-width: 110px; font-size:15px; padding: 10px 10px; }
+    .tab-btn { min-width: 100px; font-size:13px; padding: 10px 8px; }
     .access-inout-grid { grid-template-columns: 1fr !important; }
     .checkin-grid { grid-template-columns: 1fr !important; }
     .meal-grid { grid-template-columns: 1fr !important; }
@@ -420,32 +449,36 @@
 <!-- HEADER -->
 <header>
   <div class="header-top">
-    <div>
-      <div class="logo">LEARNING <span>CENTER</span></div>
-      <div class="header-subtitle">안전수칙 및 생활안내</div>
+    <div class="header-top-inner">
+      <div>
+        <div class="logo">LEARNING <span>CENTER</span></div>
+        <div class="header-subtitle">안전수칙 및 생활안내</div>
+      </div>
     </div>
   </div>
 
   <!-- TABS -->
   <nav id="tabNav">
-    <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
-      <span class="tab-icon">🚨</span>[필독] 안전수칙
-    </button>
-    <button class="tab-btn" onclick="showTab('prep', this)">
-      <span class="tab-icon">📋</span>교육사전준비
-    </button>
-    <button class="tab-btn" onclick="showTab('access', this)">
-      <span class="tab-icon">🗺️</span>오시는 길
-    </button>
-    <button class="tab-btn" onclick="showTab('stay', this)">
-      <span class="tab-icon">🏨</span>숙박안내
-    </button>
-    <button class="tab-btn" onclick="showTab('amenity', this)">
-      <span class="tab-icon">🏪</span>편의시설 안내
-    </button>
-    <button class="tab-btn" onclick="showTab('map', this)">
-      <span class="tab-icon">🏢</span>건물배치도
-    </button>
+    <div class="nav-inner">
+      <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
+        <span class="tab-icon">🚨</span>[필독] 안전수칙
+      </button>
+      <button class="tab-btn" onclick="showTab('prep', this)">
+        <span class="tab-icon">📋</span>교육사전준비
+      </button>
+      <button class="tab-btn" onclick="showTab('access', this)">
+        <span class="tab-icon">🗺️</span>오시는 길
+      </button>
+      <button class="tab-btn" onclick="showTab('stay', this)">
+        <span class="tab-icon">🏨</span>숙박안내
+      </button>
+      <button class="tab-btn" onclick="showTab('amenity', this)">
+        <span class="tab-icon">🏪</span>편의시설 안내
+      </button>
+      <button class="tab-btn" onclick="showTab('map', this)">
+        <span class="tab-icon">🏢</span>건물배치도
+      </button>
+    </div>
   </nav>
 </header>
 
@@ -753,7 +786,7 @@
       </div>
     </div>
 
-    <!-- ③ 교육참가 확인서 (탭 맨 아래 단독 배치) -->
+    <!-- ③ 교육참가 확인서 -->
     <div class="sub-section">
       <div class="sub-title">③ 교육참가 확인서 출력</div>
       <div class="card">
